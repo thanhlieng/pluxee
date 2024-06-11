@@ -12,6 +12,7 @@ import LuckyWheelComponent from '../components/LuckyWheel';
 import SelectWheel from '../components/SelectWheel';
 import * as S from './LuckyWheelLayout.styles';
 import BGImage from '@/assets/images/bg.jpg';
+import AxiosClient from '@/apis/AxiosClient';
 
 const LuckyWheelPage = () => {
     const [visible, setVisible] = useState(false);
@@ -22,16 +23,33 @@ const LuckyWheelPage = () => {
     const [dataLuckyWheel, setDataLuckyWheel] = useState<any>([]);
     const [dataItemWheel, setDataItemWheel] = useState([]);
     const [selectedWheel, setSelectedWheel] = useState<any>();
+    const [gotItem, setGotItem] = useState<any>();
+    const [listHistory, setListHistory] = useState<any>([]);
 
     if (isSuccess) {
         LocalStorage.setToken(data?.result?.accessToken);
     }
+
+    const requestHistory = async () => {
+        const res = await AxiosClient.post('/lucky_draw_api/GetUserWinners', { wheel_id: selectedWheel.id });
+        setListHistory(res?.result.items);
+    };
+
+    useEffect(() => {
+        if (selectedWheel?.id) {
+            requestHistory();
+        }
+    }, [selectedWheel?.id]);
 
     useEffect(() => {
         if (dataWheel) {
             setDataLuckyWheel(dataWheel?.result?.items);
         }
     }, [dataWheel]);
+
+    useEffect(() => {
+        console.log('123', gotItem);
+    }, [gotItem]);
 
     const [isSelectedOption, setIsSelectedOption] = useState(false);
 
@@ -49,8 +67,9 @@ const LuckyWheelPage = () => {
                         setDataLuckyWheel={setDataLuckyWheel}
                         setDataItemWheel={setDataItemWheel}
                         dataItemWheel={dataItemWheel}
+                        setGotItem={setGotItem}
                     />
-                    <ListUser />
+                    <ListUser listHistory={listHistory} />
                 </Row>
             ) : (
                 <div
@@ -110,14 +129,15 @@ const LuckyWheelPage = () => {
                     setVisible(false);
                 }}
             >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <QRCode
-                        id="qrcode"
-                        value="https://viblo.asia/u/tranchien"
-                        size={290}
-                        level={'H'}
-                        includeMargin={true}
-                    />
+                <div style={{ display: 'inline-block', alignItems: 'center', justifyContent: 'center' }}>
+                    {gotItem ? (
+                        <>
+                            <p>Chúc mừng bạn đã nhận được</p>
+                            <p style={{ fontWeight: 'bold' }}>Voucher {gotItem.evoucher_name}</p>
+                            <p style={{ fontWeight: 'bold' }}>Code: {gotItem.code}</p>
+                            <p></p>
+                        </>
+                    ) : null}
                 </div>
             </Modal>
         </S.Wrapper>
