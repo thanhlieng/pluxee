@@ -1,58 +1,72 @@
 import { FONT_SIZE, FONT_WEIGHT } from '@/config/themes/constants';
 import { Col, Pagination, Table } from 'antd';
+import { useEffect, useState } from 'react';
 
-const ListUser = () => {
-    const dataSource = [
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-        },
-    ];
+const ListUser = ({ listHistory }: any) => {
+    const [dataSource, setDataSource] = useState<any>([]);
+    useEffect(() => {
+        const ar = listHistory?.map((ele, index) => {
+            return {
+                key: index,
+                typeLucky: ele.wheel_name,
+                gift: ele.evoucher_name,
+                name: '',
+                phone: ele.phone,
+            };
+        });
+        setDataSource(ar);
+    }, [listHistory]);
+    // const dataSource = [
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    //     {
+    //         key: '1',
+    //         typeLucky: 'Vòng quay số 1',
+    //         gift: 'iphone 13 pro max',
+    //         name: 'Nguyễn Đức Thịnh',
+    //         phone: '0795296216',
+    //     },
+    // ];
 
     const columns = [
         {
@@ -90,9 +104,9 @@ const ListUser = () => {
                 Danh sách khách hàng nhận quà
             </div>
             <Table pagination={false} bordered dataSource={dataSource} columns={columns} />
-            <div style={{ justifyContent: 'end', display: 'flex', marginTop: 10 }}>
+            {/* <div style={{ justifyContent: 'end', display: 'flex', marginTop: 10 }}>
                 <Pagination defaultCurrent={1} total={7} />
-            </div>
+            </div> */}
         </Col>
     );
 };

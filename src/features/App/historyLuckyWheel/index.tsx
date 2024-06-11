@@ -6,9 +6,41 @@ const HistoryLuckyWheel = () => {
         {
             key: '1',
             typeLucky: 'Vòng quay số 1',
+            gift: 'Bơ TH',
+            name: 'Nguyễn Đức A',
+            phone: '0795243216',
+            created_at: '08/06/2024',
+        },
+        {
+            key: '1',
+            typeLucky: 'Vòng quay số 1',
+            gift: 'Bơ TH',
+            name: 'Nguyễn Đức B',
+            phone: '0791296216',
+            created_at: '08/06/2024',
+        },
+        {
+            key: '1',
+            typeLucky: 'Vòng quay số 1',
+            gift: 'Sữa TH',
+            name: 'Nguyễn Đức C',
+            phone: '0795293416',
+            created_at: '08/06/2024',
+        },
+        {
+            key: '1',
+            typeLucky: 'Vòng quay số 1',
+            gift: 'Giảm 20% sữa TH',
+            name: 'Nguyễn Đức D',
+            phone: '0865296216',
+            created_at: '08/06/2024',
+        },
+        {
+            key: '1',
+            typeLucky: 'Vòng quay số 1',
             gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
+            name: 'Nguyễn Đức E',
+            phone: '0795267216',
             created_at: '08/06/2024',
         },
         {
@@ -16,47 +48,7 @@ const HistoryLuckyWheel = () => {
             typeLucky: 'Vòng quay số 1',
             gift: 'iphone 13 pro max',
             name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-            created_at: '08/06/2024',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-            created_at: '08/06/2024',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-            created_at: '08/06/2024',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-            created_at: '08/06/2024',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
-            created_at: '08/06/2024',
-        },
-        {
-            key: '1',
-            typeLucky: 'Vòng quay số 1',
-            gift: 'iphone 13 pro max',
-            name: 'Nguyễn Đức Thịnh',
-            phone: '0795296216',
+            phone: '0795496216',
             created_at: '08/06/2024',
         },
     ];
@@ -90,7 +82,6 @@ const HistoryLuckyWheel = () => {
     ];
     return (
         <S.Wrapper>
-            {' '}
             <div
                 style={{
                     textAlign: 'center',

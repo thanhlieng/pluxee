@@ -14,6 +14,7 @@ const LuckyWheelComponent = ({
     dataItemWheel,
     selectedWheel,
     setSelectedWheel,
+    setGotItem,
 }: any) => {
     const [blocks] = useState([{ padding: '25px', background: '#103A71' }]);
     const [prizes] = useState([
@@ -84,6 +85,7 @@ const LuckyWheelComponent = ({
             { headers: { Authorization: LocalStorage.getTokenUser() } }
         );
         console.log(res);
+        return res?.result.items[0].code;
     };
 
     const myLucky = useRef();
@@ -126,10 +128,12 @@ const LuckyWheelComponent = ({
                             //     myLucky.current.stop(index);
                             // }, 2500);
                         }}
-                        onEnd={(prize) => {
+                        onEnd={async (prize: any) => {
                             // 抽奖结束会触发end回调
+
                             console.log(prize);
-                            requestEvoucherDetail(prize.evoucher_id);
+                            const code = await requestEvoucherDetail(prize.evoucher_id);
+                            setGotItem({ ...prize, code: code });
                             setVisible(true);
                         }}
                     />
@@ -161,6 +165,7 @@ const LuckyWheelComponent = ({
                 setDataItemWheel={setDataItemWheel}
                 dataLuckyWheel={dataLuckyWheel}
                 setDataLuckyWheel={setDataLuckyWheel}
+                setSelectedWheel={setSelectedWheel}
             />
         </Col>
     );
